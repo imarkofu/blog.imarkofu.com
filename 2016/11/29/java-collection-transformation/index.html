@@ -1,0 +1,924 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java, 集合, 转换" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="代码演示List&amp;lt;–&amp;gt;数组、List&amp;lt;–&amp;gt;Set、数组&amp;lt;–&amp;gt;Set、Map将键转化为Set、Map将值转化为Set、Map将值转化为List等集合常用转化操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java集合间的相互转换">
+<meta property="og:url" content="http://blog.imarkofu.com/2016/11/29/java-collection-transformation/index.html">
+<meta property="og:site_name" content="imarkofu's blog">
+<meta property="og:description" content="代码演示List&amp;lt;–&amp;gt;数组、List&amp;lt;–&amp;gt;Set、数组&amp;lt;–&amp;gt;Set、Map将键转化为Set、Map将值转化为Set、Map将值转化为List等集合常用转化操作。">
+<meta property="og:updated_time" content="2016-11-30T07:06:19.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java集合间的相互转换">
+<meta name="twitter:description" content="代码演示List&amp;lt;–&amp;gt;数组、List&amp;lt;–&amp;gt;Set、数组&amp;lt;–&amp;gt;Set、Map将键转化为Set、Map将值转化为Set、Map将值转化为List等集合常用转化操作。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6241785,
+      author: 'imarkofu'
+    }
+  };
+</script>
+
+  <title> Java集合间的相互转换 | imarkofu's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?12b3293398b51d8227d4915298f8c206";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/imarkofu/blog.imarkofu.com"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+    <!-- add Fork me on Github -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imarkofu's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the most important thing is endurance.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java集合间的相互转换
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-29T23:17:27+08:00" content="2016-11-29">
+              2016-11-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/29/java-collection-transformation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/29/java-collection-transformation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/29/java-collection-transformation/" class="leancloud_visitors" data-flag-title="Java集合间的相互转换">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>代码演示List&lt;–&gt;数组、List&lt;–&gt;Set、数组&lt;–&gt;Set、Map将键转化为Set、Map将值转化为Set、Map将值转化为List等集合常用转化操作。<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.HashSet;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="keyword">import</span> java.util.Set;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Title</span>: CollectionConversion.java&lt;br&gt;</div><div class="line"> * <span class="doctag">@package</span>: com.imarkofu.demo&lt;br&gt;</div><div class="line"> * <span class="doctag">@Description</span>:集合转换&lt;br&gt;</div><div class="line"> * <span class="doctag">@author</span> gbwl&lt;br&gt;</div><div class="line"> * <span class="doctag">@date</span> 2015年5月11日 下午3:57:01&lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CollectionConversion</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// List--&gt;数组</span></div><div class="line">		List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		list.add(<span class="string">"蹇伟"</span>);</div><div class="line">		list.add(<span class="string">"Jerval"</span>);</div><div class="line">		list.add(<span class="string">"杰威"</span>);</div><div class="line">		Object[] objects = list.toArray();<span class="comment">// 返回Object数组</span></div><div class="line">		System.out.println(<span class="string">"objects:"</span> + Arrays.toString(objects));</div><div class="line">		String[] strings1 = <span class="keyword">new</span> String[list.size()];</div><div class="line">		list.toArray(strings1);<span class="comment">// 将转化后的数组放入已经创建好的对象中</span></div><div class="line">		System.out.println(<span class="string">"strings1:"</span> + Arrays.toString(strings1));</div><div class="line">		String[] strings2 = list.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);<span class="comment">// 将转化后的数组赋给新对象</span></div><div class="line">		System.out.println(<span class="string">"strings2:"</span> + Arrays.toString(strings2));</div><div class="line">		<span class="comment">// 数组--&gt;List</span></div><div class="line">		String[] ss = &#123; <span class="string">"JJ"</span>, <span class="string">"KK"</span> &#125;;</div><div class="line">		List&lt;String&gt; list1 = Arrays.asList(ss);</div><div class="line">		List&lt;String&gt; list2 = Arrays.asList(<span class="string">"AAA"</span>, <span class="string">"BBB"</span>);</div><div class="line">		System.out.println(list1);</div><div class="line">		System.out.println(list2);</div><div class="line">		<span class="comment">// List--&gt;Set</span></div><div class="line">		List&lt;String&gt; list3 = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="keyword">new</span> HashSet&lt;String&gt;());</div><div class="line">		<span class="comment">// Set--&gt;List</span></div><div class="line">		Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;String&gt;(<span class="keyword">new</span> ArrayList&lt;String&gt;());</div><div class="line">		<span class="comment">// 数组--&gt;Set</span></div><div class="line">		String[] strs = &#123; <span class="string">"AA"</span>, <span class="string">"BB"</span> &#125;;</div><div class="line">		Set&lt;String&gt; set2 = <span class="keyword">new</span> HashSet&lt;String&gt;(Arrays.asList(strs));</div><div class="line">		System.out.println(set2);</div><div class="line">		<span class="comment">// Set--&gt;数组</span></div><div class="line">		Set&lt;String&gt; set3 = <span class="keyword">new</span> HashSet&lt;String&gt;(Arrays.asList(<span class="string">"PP"</span>, <span class="string">"OO"</span>));</div><div class="line">		String[] strSet = <span class="keyword">new</span> String[set3.size()];</div><div class="line">		set3.toArray(strSet);</div><div class="line">		System.out.println(Arrays.toString(strSet));</div><div class="line">		<span class="comment">// Map操作</span></div><div class="line">		Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</div><div class="line">		map.put(<span class="string">"YYY"</span>, <span class="string">"UUU"</span>);</div><div class="line">		map.put(<span class="string">"RRR"</span>, <span class="string">"TTT"</span>);</div><div class="line">		<span class="comment">// 将键转化为Set</span></div><div class="line">		Set&lt;String&gt; mapKeySet = map.keySet();</div><div class="line">		<span class="comment">// 将值转化为Set</span></div><div class="line">		Set&lt;String&gt; mapValuesSet = <span class="keyword">new</span> HashSet&lt;String&gt;(map.values());</div><div class="line">		<span class="comment">// 将值转化为List</span></div><div class="line">		List&lt;String&gt; mapValuesList = <span class="keyword">new</span> ArrayList&lt;String&gt;(map.values());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/集合/" rel="tag">#集合</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/29/curl-command-usage-guide/" rel="next" title="curl命令使用指南">
+                <i class="fa fa-chevron-left"></i> curl命令使用指南
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/29/the-difference-of-HashSet-LinkedHashSet-TreeSet/" rel="prev" title="HashSet、LinkedHashSet、TreeSet使用区别">
+                HashSet、LinkedHashSet、TreeSet使用区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/29/java-collection-transformation/"
+           data-title="Java集合间的相互转换" data-url="http://blog.imarkofu.com/2016/11/29/java-collection-transformation/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="gbwl_cgl" />
+          <p class="site-author-name" itemprop="name">gbwl_cgl</p>
+          <p class="site-description motion-element" itemprop="description">一切都是最好的安排！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gbwl_cgl</span>
+</div>
+
+<div class="powered-by">
+  本站总访问量 <span id="busuanzi_value_site_pv"></span>
+</div>
+
+<div class="theme-info">
+  您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+</div>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"imarkofu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("f8naVQQv72FfbnP7uyuEVmiH-gzGzoHsz", "G98XlqTAzIaNVuwxvDhuxIP9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

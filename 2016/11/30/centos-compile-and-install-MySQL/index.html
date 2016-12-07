@@ -1,0 +1,947 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MySQL安装, MySQL编译安装" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在开始之前我们需要准备一些库文件。1[root@imarkofu ~]# yum install zlib-devel openssl-devel gcc-c++ gcc bison cmake ncurses-devel -y
+一定要安装这些包， LZ之前没有安装就开始编译MySQL，踩了好多坑， 后来上网一查才发现需要这些文件和管理工具才行。因此一定要安装。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos 6.5 编译安装 mysql 5.5.40">
+<meta property="og:url" content="http://blog.imarkofu.com/2016/11/30/centos-compile-and-install-MySQL/index.html">
+<meta property="og:site_name" content="imarkofu's blog">
+<meta property="og:description" content="在开始之前我们需要准备一些库文件。1[root@imarkofu ~]# yum install zlib-devel openssl-devel gcc-c++ gcc bison cmake ncurses-devel -y
+一定要安装这些包， LZ之前没有安装就开始编译MySQL，踩了好多坑， 后来上网一查才发现需要这些文件和管理工具才行。因此一定要安装。">
+<meta property="og:updated_time" content="2016-11-30T14:38:02.646Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos 6.5 编译安装 mysql 5.5.40">
+<meta name="twitter:description" content="在开始之前我们需要准备一些库文件。1[root@imarkofu ~]# yum install zlib-devel openssl-devel gcc-c++ gcc bison cmake ncurses-devel -y
+一定要安装这些包， LZ之前没有安装就开始编译MySQL，踩了好多坑， 后来上网一查才发现需要这些文件和管理工具才行。因此一定要安装。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6241785,
+      author: 'imarkofu'
+    }
+  };
+</script>
+
+  <title> centos 6.5 编译安装 mysql 5.5.40 | imarkofu's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?12b3293398b51d8227d4915298f8c206";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/imarkofu/blog.imarkofu.com"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+    <!-- add Fork me on Github -->
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imarkofu's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the most important thing is endurance.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                centos 6.5 编译安装 mysql 5.5.40
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-30T21:14:20+08:00" content="2016-11-30">
+              2016-11-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/30/centos-compile-and-install-MySQL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/30/centos-compile-and-install-MySQL/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/30/centos-compile-and-install-MySQL/" class="leancloud_visitors" data-flag-title="centos 6.5 编译安装 mysql 5.5.40">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在开始之前我们需要准备一些库文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu ~]# yum install zlib-devel openssl-devel gcc-c++ gcc bison cmake ncurses-devel -y</div></pre></td></tr></table></figure></p>
+<p>一定要安装这些包， LZ之前没有安装就开始编译MySQL，踩了好多坑， 后来上网一查才发现需要这些文件和管理工具才行。因此一定要安装。<br><a id="more"></a><br><strong>还有如果大家编译过程中出错, 请一定要执行:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu ~]# rm -f CMakeCache.txt</div></pre></td></tr></table></figure></p>
+<p>之后再继续安装。<br>安装好之后我们来添加MySQL数据库需要的账户和目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu ~]# groupadd -r mysql</div><div class="line">[root@imarkofu ~]# useradd -g mysql -r -s /sbin/nologin mysql</div><div class="line">[root@imarkofu ~]# id mysql #确认用户</div><div class="line">[root@imarkofu ~]# mkdir /var/data/mysql -p #存放数据库文件</div><div class="line">[root@imarkofu ~]# chown mysql:mysql /var/data -R</div></pre></td></tr></table></figure></p>
+<p>下载MySQL源码包：<a href="http://pan.baidu.com/s/1c0fdgdE" target="_blank" rel="external">mysql-5.5.40.tar.gz</a><br>下载后上传到服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu ~]# tar -xvf mysql-5.5.40.tar.gz -C /usr/local/src/</div><div class="line">[root@imarkofu ~]# cd /usr/local/src/mysql-5.5.40</div></pre></td></tr></table></figure></p>
+<p>cmake编译MySQL的一些常用选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">------------------------------------------------------------</div><div class="line">cmake mysql 编译安装:</div><div class="line">./configure -&gt; cmake .</div><div class="line">./configure --help -&gt; cmake -LH -&gt; ccmake .</div><div class="line">------------------------------------------------------------</div><div class="line">指定安装文件的安装路径常用选项</div><div class="line">-DCMAKE_INSTALL_PREFIX=/usr/local/mysql</div><div class="line">-DMYSQL_DATADIR=/data/mysql</div><div class="line">-DSYSCONFDIR=/etc</div><div class="line">------------------------------------------------------------</div><div class="line">默认编译的存储引擎包括: csv, myisma, myisammrg, heap. 若要安装其他存储引擎,可以使用类似如下的编译选项</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1</div><div class="line">-DWITH_ARCHIVE_STORAGE_ENGINE=1</div><div class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1</div><div class="line">------------------------------------------------------------</div><div class="line">若要明确指出不编译某存储引擎, 可以使用类似如下的选项:</div><div class="line">-DWITHOUT_&lt;ENGINE&gt;_STORAGE_ENGINE=1</div><div class="line">例如:</div><div class="line">-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1</div><div class="line">-DWITHOUT_FEDERATED_STORAGE_ENGINE=1</div><div class="line">------------------------------------------------------------</div><div class="line">若要编译进其他功能, 如SSl等, 可使用类似如下选项来实现编译时使用某库文件或者, 或者不使用某库文件.</div><div class="line">-DWITH_READLINE=1</div><div class="line">-DWITH_SSL=system</div><div class="line">-DWITH_ZLIB=system</div><div class="line">-DWITH_LIBWRAP=0</div><div class="line">------------------------------------------------------------</div><div class="line">其他常用选项:</div><div class="line">-DMYSQL_TCP_PORT=3306</div><div class="line">-MYDQL_UNIX_ADDR=/tmp/mysql.sock</div><div class="line">-DENABLED_LOCAL_INFILE=1</div><div class="line">-DEXTRA_CHARSETS=all</div><div class="line">-DDEFAULT_CHARSET=utf8</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci</div><div class="line">-DWITH_DEBUG=0</div><div class="line">-DENABLE_PROFILING=1</div><div class="line">------------------------------------------------------------</div></pre></td></tr></table></figure></p>
+<p>开始编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql-5.5.40 \</div><div class="line">-DMYSQL_DATADIR=/var/data/mysql \ #数据库目录</div><div class="line">-DSYSCONFDIR=/etc \ #配置文件目录</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \ #启用InnoDB存储引擎</div><div class="line">-DWITH_ARCHIVE_STORAGE_ENGINE=1 \ #启用ARCHIVE存储引擎</div><div class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \ #启用黑洞存储引擎</div><div class="line">-DWITH_READLINE=1 \</div><div class="line">-DWITH_SSL=system \ #启用SSL协议</div><div class="line">-DWITH_ZLIB=system \ #启用Zlib压缩</div><div class="line">-DWITH_LIBWRAP=0 \</div><div class="line">-DDEFAULT_CHARSET=utf8 \ #设置字符集utf8</div><div class="line">-DMYSQL_UNIX_ADDR=/tmp/mysql.sock \</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci</div></pre></td></tr></table></figure>
+<p>如果出现以下信息，那么恭喜你第一阶段的配置顺利完成了<br>过程中如果出现错误也不要害怕， 因为你长经验的时刻就要来了， 通常是因为缺少了什么依赖的包而出现的问题， 你可以把你的错误信息铁道Google或者百度中去搜索。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">....(此处省略一万字)</div><div class="line">-- Performing Test HAVE_IB_GCC_ATOMIC_BUILTINS</div><div class="line">-- Performing Test HAVE_IB_GCC_ATOMIC_BUILTINS - Success</div><div class="line">-- Performing Test HAVE_IB_ATOMIC_PTHREAD_T_GCC</div><div class="line">-- Performing Test HAVE_IB_ATOMIC_PTHREAD_T_GCC - Success</div><div class="line">-- Check size of pthread_t</div><div class="line">-- Check size of pthread_t - done</div><div class="line">-- Performing Test HAVE_PEERCRED</div><div class="line">-- Performing Test HAVE_PEERCRED - Success</div><div class="line">-- Library mysqlclient depends on OSLIBS -lpthread;z;m;rt;/usr/lib64/libssl.so;/usr/lib64/libcrypto.so;dl</div><div class="line">-- Configuring done</div><div class="line">-- Generating done</div><div class="line">-- Build files have been written to: /usr/local/mysql-5.5.40</div></pre></td></tr></table></figure></p>
+<p>继续<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# make</div><div class="line">....(此处省略一万字)</div><div class="line">Scanning dependencies of target udf_example</div><div class="line">[100%] Building C object sql/CMakeFiles/udf_example.dir/udf_example.c.o</div><div class="line">Linking C shared module udf_example.so</div><div class="line">[100%] Built target udf_example</div><div class="line">Scanning dependencies of target my_safe_process</div><div class="line">[100%] Building CXX object mysql-test/lib/My/SafeProcess/CMakeFiles/my_safe_process.dir/safe_process.cc.o</div><div class="line">Linking CXX executable my_safe_process</div><div class="line">[100%] Built target my_safe_process</div></pre></td></tr></table></figure></p>
+<p>如果没有报错，继续<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# make install</div><div class="line">....(此处省略一万字)</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man1/mysql_upgrade.1</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man1/mysqlslap.1</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man1/replace.1</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man1/mysql.1</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man1/mysql_setpermission.1</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man1/mysql_secure_installation.1</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man1/mysqlimport.1</div><div class="line">-- Installing: /usr/local/mysql-5.5.40/man/man8/mysqld.8</div></pre></td></tr></table></figure></p>
+<p>全部安装ok之后我们来配置下文档的权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# chown :mysql /usr/local/mysql-5.5.40 -R</div><div class="line">[root@imarkofu mysql-5.5.40]# cd /usr/local/mysql-5.5.40/</div><div class="line">[root@imarkofu mysql-5.5.40]# chmod +x scripts/mysql_install_db</div><div class="line">[root@imarkofu mysql-5.5.40]# scripts/mysql_install_db --user=mysql --datadir=/var/data/mysql/ #执行初始化脚本</div><div class="line">....(此处省略一万字)</div><div class="line">./bin/mysqladmin -u root password &apos;new-password&apos;</div><div class="line">./bin/mysqladmin -u root -h imarkofu password &apos;new-password&apos;</div><div class="line"> </div><div class="line">Alternatively you can run:</div><div class="line">./bin/mysql_secure_installation</div><div class="line"> </div><div class="line">which will also give you the option of removing the test</div><div class="line">databases and anonymous user created by default.  This is</div><div class="line">strongly recommended for production servers.</div><div class="line"> </div><div class="line">See the manual for more instructions.</div><div class="line"> </div><div class="line">You can start the MySQL daemon with:</div><div class="line">cd . ; ./bin/mysqld_safe &amp;</div><div class="line"> </div><div class="line">You can test the MySQL daemon with mysql-test-run.pl</div><div class="line">cd ./mysql-test ; perl mysql-test-run.pl</div><div class="line"> </div><div class="line">Please report any problems at http://bugs.mysql.com/</div></pre></td></tr></table></figure></p>
+<p>如果你获得的信息和上面一样的话, 恭喜你, 你又离成功近了一步<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# ls /var/data/mysql/ #看一下是否生成了文件</div><div class="line">mysql  performance_schema  test</div></pre></td></tr></table></figure></p>
+<p>如果是这样那么继续<br>创建服务脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# cp support-files/mysql.server /etc/rc.d/init.d/mysqld </div><div class="line">[root@imarkofu mysql-5.5.40]# chmod +x /etc/rc.d/init.d/mysqld #添加mysqld执行权限</div><div class="line">[root@imarkofu mysql-5.5.40]# chkconfig --add mysqld #添加开机启动</div></pre></td></tr></table></figure></p>
+<p>创建配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# mv /etc/my.cnf&#123;,.bak&#125;</div><div class="line">[root@imarkofu mysql-5.5.40]# cp support-files/my-large.cnf /etc/my.cnf</div><div class="line">[root@imarkofu mysql-5.5.40]# vim /etc/my.cnf</div><div class="line"></div><div class="line">#找到如下部分</div><div class="line">[mysqld]</div><div class="line">port            = 3306</div><div class="line">socket          = /tmp/mysql.sock</div><div class="line">skip-external-locking</div><div class="line">key_buffer_size = 256M</div><div class="line">max_allowed_packet = 1M</div><div class="line">table_open_cache = 256</div><div class="line">sort_buffer_size = 1M</div><div class="line">read_buffer_size = 1M</div><div class="line">read_rnd_buffer_size = 4M</div><div class="line">myisam_sort_buffer_size = 64M</div><div class="line">thread_cache_size = 8</div><div class="line">query_cache_size= 16M</div><div class="line"># Try number of CPU&apos;s*2 for thread_concurrency</div><div class="line">thread_concurrency = 8</div><div class="line">datadir= /var/data/mysql #添加次行内容, 就是数据库文件存放路径</div><div class="line">:wq</div><div class="line">#保存退出</div><div class="line"></div><div class="line">[root@imarkofu mysql-5.5.40]# vim /etc/profile.d/mysql.sh</div><div class="line">export PATH=/usr/local/mysql-5.5.40/bin:$PATH #添加此行</div></pre></td></tr></table></figure></p>
+<p>好了，尝试着启动MySQL服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# service mysqld start</div><div class="line">Starting MySQL..                                           [  OK  ]</div><div class="line">[root@imarkofu mysql-5.5.40]#</div><div class="line">[root@imarkofu mysql-5.5.40]# ss -tnl| grep :3306 </div><div class="line">LISTEN     0      50                        *:3306                     *:*    </div><div class="line">#发现正常监听 3306端口</div></pre></td></tr></table></figure></p>
+<p>距离胜利越来越近了<br>然后配置MySQL管理员密码进行初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# mysql #使用客户端登录</div><div class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</div><div class="line">Your MySQL connection id is 1</div><div class="line">Server version: 5.5.40-log Source distribution</div><div class="line">Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.</div><div class="line">Oracle is a registered trademark of Oracle Corporation and/or its</div><div class="line">affiliates. Other names may be trademarks of their respective</div><div class="line">owners.</div><div class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</div><div class="line">mysql&gt; </div><div class="line">#查看一下默认存在的用户</div><div class="line">mysql&gt; select user,password,host from mysql.user; </div><div class="line">+------+----------+-----------+</div><div class="line">| user | password | host      |</div><div class="line">+------+----------+-----------+</div><div class="line">| root |          | localhost |</div><div class="line">| root |          | imarkofu  |</div><div class="line">| root |          | 127.0.0.1 |</div><div class="line">| root |          | ::1       |</div><div class="line">|      |          | localhost |</div><div class="line">|      |          | imarkofu  |</div><div class="line">+------+----------+-----------+</div><div class="line">6 rows in set (0.00 sec)</div><div class="line">mysql&gt; </div><div class="line"></div><div class="line">#删除默认存在的账户, 要求用户只能从本地服务器访问数据库</div><div class="line">mysql&gt; delete from mysql.user where host!=&apos;localhost&apos;; </div><div class="line">Query OK, 4 rows affected (0.00 sec)</div><div class="line"></div><div class="line">#修改root管理员账号密码</div><div class="line">mysql&gt; update mysql.user set password=PASSWORD(&apos;p@ssw0rd&apos;) where user=&apos;root&apos;; </div><div class="line">Query OK, 1 row affected (0.00 sec)</div><div class="line">Rows matched: 1  Changed: 1  Warnings: 0</div><div class="line"> </div><div class="line">#更新数据库</div><div class="line">mysql&gt; FLUSH PRIVILEGES;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"> </div><div class="line">#看一下修改后的结果</div><div class="line">mysql&gt; select user,password,host from mysql.user;</div><div class="line">+------+-------------------------------------------+-----------+</div><div class="line">| user | password                                  | host      |</div><div class="line">+------+-------------------------------------------+-----------+</div><div class="line">| root | *D7E39C3AF517EC9EF7086223B036E0B4F22821F8 | localhost |</div><div class="line">|      |                                           | localhost |</div><div class="line">+------+-------------------------------------------+-----------+</div><div class="line">2 rows in set (0.00 sec)</div><div class="line">mysql&gt; \q</div><div class="line">Bye</div><div class="line">[root@imarkofu mysql-5.5.40]#</div></pre></td></tr></table></figure></p>
+<p>然后就可以使用新密码登陆了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# mysql -u root -h localhost -p</div><div class="line">Enter password: #输入刚才设置的密码</div><div class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</div><div class="line">Your MySQL connection id is 4</div><div class="line">Server version: 5.5.40-log Source distribution</div><div class="line">Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.</div><div class="line">Oracle is a registered trademark of Oracle Corporation and/or its</div><div class="line">affiliates. Other names may be trademarks of their respective</div><div class="line">owners.</div><div class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</div><div class="line">mysql&gt;</div></pre></td></tr></table></figure></p>
+<p>好了MySQL到此 就安装成功了<br>对了，忘记了导入开发的库文件了， ok 很快就好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@imarkofu mysql-5.5.40]# ln -sv /usr/local/mysql/include/ /usr/include/mysql #软连接到系统库中</div><div class="line">[root@imarkofu mysql-5.5.40]# vim /etc/ld.so.conf.d/mysql.conf #编辑这个文件, 并且添加如下路径</div><div class="line">/usr/local/mysql-5.5.40/lib</div><div class="line">[root@imarkofu mysql-5.5.40]# ldconfig #重新加载库文件</div><div class="line">[root@imarkofu mysql-5.5.40]# ldconfig -p | grep mysql #让我们来检查下是不是加载好了</div><div class="line">    libmysqlclient_r.so.16 (libc6,x86-64) =&gt; /usr/lib64/mysql/libmysqlclient_r.so.16</div><div class="line">    libmysqlclient.so.18 (libc6,x86-64) =&gt; /usr/local/mysql-5.5.40/lib/libmysqlclient.so.18</div><div class="line">    libmysqlclient.so.16 (libc6,x86-64) =&gt; /usr/lib64/mysql/libmysqlclient.so.16</div><div class="line">    libmysqlclient.so (libc6,x86-64) =&gt; /usr/local/mysql-5.5.40/lib/libmysqlclient.so</div></pre></td></tr></table></figure></p>
+<p>至此，MySQL5.5.40 编译安装完成</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag">#数据库</a>
+          
+            <a href="/tags/MySQL/" rel="tag">#MySQL</a>
+          
+            <a href="/tags/编译安装/" rel="tag">#编译安装</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/30/optimize-mysql-in-subqueries/" rel="next" title="mysql in 子查询 效率慢 优化">
+                <i class="fa fa-chevron-left"></i> mysql in 子查询 效率慢 优化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/centos-safety-reinforcement-and-performance-optimization/" rel="prev" title="CentOS 6.5安全加固及性能优化">
+                CentOS 6.5安全加固及性能优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/30/centos-compile-and-install-MySQL/"
+           data-title="centos 6.5 编译安装 mysql 5.5.40" data-url="http://blog.imarkofu.com/2016/11/30/centos-compile-and-install-MySQL/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="gbwl_cgl" />
+          <p class="site-author-name" itemprop="name">gbwl_cgl</p>
+          <p class="site-description motion-element" itemprop="description">一切都是最好的安排！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gbwl_cgl</span>
+</div>
+
+<div class="powered-by">
+  本站总访问量 <span id="busuanzi_value_site_pv"></span>
+</div>
+
+<div class="theme-info">
+  您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+</div>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"imarkofu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("f8naVQQv72FfbnP7uyuEVmiH-gzGzoHsz", "G98XlqTAzIaNVuwxvDhuxIP9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
