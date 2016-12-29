@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.imarkofu.com/2016/12/29/mysql-function/</loc>
+    
+    <lastmod>2016-12-29T10:02:33.045Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.imarkofu.com/2016/12/29/linux-date-command/</loc>
     
     <lastmod>2016-12-29T06:47:31.430Z</lastmod>

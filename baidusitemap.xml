@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://blog.imarkofu.com/2016/12/29/mysql-function/</loc>
+    <lastmod>2016-12-29T10:02:33.045Z</lastmod>
+    <data>
+        <display>
+        <title>mysql字符函数详解</title>
+        <pubTime>2016-12-29T07:24:31.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>字符函数</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.imarkofu.com/2016/12/29/linux-date-command/</loc>
     <lastmod>2016-12-29T06:47:31.430Z</lastmod>
     <data>
