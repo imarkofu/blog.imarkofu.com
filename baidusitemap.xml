@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://blog.imarkofu.com/2016/12/29/linux-date-command/</loc>
+    <lastmod>2016-12-29T06:47:31.430Z</lastmod>
+    <data>
+        <display>
+        <title>linux date命令</title>
+        <pubTime>2016-12-29T06:19:07.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>date</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://blog.imarkofu.com/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.imarkofu.com/2016/11/30/centos-safety-reinforcement-and-performance-optimization/</loc>
     <lastmod>2016-12-01T10:29:50.691Z</lastmod>
     <data>
@@ -232,6 +254,7 @@
     </data>
     </url>
 
+    
     
     
     

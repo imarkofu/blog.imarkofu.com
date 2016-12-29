@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="imarkofu, gbwl, 攺變耒莱, gbwl_cgl" />
+  <meta name="keywords" content="date, linux, 时间命令" />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="一切都是最好的安排！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="imarkofu's blog">
-<meta property="og:url" content="http://blog.imarkofu.com/tags/linux/index.html">
+<meta name="description" content="date命令是显示或设置系统时间与日期。很多shell脚本里面需要打印不同格式的时间或日期，以及要根据时间和日期执行操作。延时通常用于脚本执行过程中提供一段等待的时间。日期可以以多种格式去打印，也可以使用命令设置固定的格式。在类UNIX系统中，日期被存储为一个整数，其大小为自世界标准时间（UTC）1970年1月1日0时0分0秒起流逝的秒数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux date命令">
+<meta property="og:url" content="http://blog.imarkofu.com/2016/12/29/linux-date-command/index.html">
 <meta property="og:site_name" content="imarkofu's blog">
-<meta property="og:description" content="一切都是最好的安排！">
+<meta property="og:description" content="date命令是显示或设置系统时间与日期。很多shell脚本里面需要打印不同格式的时间或日期，以及要根据时间和日期执行操作。延时通常用于脚本执行过程中提供一段等待的时间。日期可以以多种格式去打印，也可以使用命令设置固定的格式。在类UNIX系统中，日期被存储为一个整数，其大小为自世界标准时间（UTC）1970年1月1日0时0分0秒起流逝的秒数。">
+<meta property="og:updated_time" content="2016-12-29T06:47:31.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="imarkofu's blog">
-<meta name="twitter:description" content="一切都是最好的安排！">
+<meta name="twitter:title" content="linux date命令">
+<meta name="twitter:description" content="date命令是显示或设置系统时间与日期。很多shell脚本里面需要打印不同格式的时间或日期，以及要根据时间和日期执行操作。延时通常用于脚本执行过程中提供一段等待的时间。日期可以以多种格式去打印，也可以使用命令设置固定的格式。在类UNIX系统中，日期被存储为一个整数，其大小为自世界标准时间（UTC）1970年1月1日0时0分0秒起流逝的秒数。">
 
 
 
@@ -110,7 +111,7 @@
   };
 </script>
 
-  <title> 标签: linux | imarkofu's blog </title>
+  <title> linux date命令 | imarkofu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -141,7 +142,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <!-- add Fork me on Github -->
@@ -276,102 +277,199 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        linux
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/12/29/linux-date-command/" itemprop="url">
-              
-                <span itemprop="name">linux date命令</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-29T14:19:07+08:00"
-              content="2016-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/12/01/svn-backup/" itemprop="url">
-              
-                <span itemprop="name">SVN备份方案</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-01T15:07:43+08:00"
-              content="2016-12-01" >
-          12-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/29/curl-command-usage-guide/" itemprop="url">
-              
-                <span itemprop="name">curl命令使用指南</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-29T17:07:52+08:00"
-              content="2016-11-29" >
-          11-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux date命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T14:19:07+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/29/linux-date-command/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/29/linux-date-command/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/29/linux-date-command/" class="leancloud_visitors" data-flag-title="linux date命令">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>date命令是显示或设置系统时间与日期。<br>很多shell脚本里面需要打印不同格式的时间或日期，以及要根据时间和日期执行操作。延时通常用于脚本执行过程中提供一段等待的时间。日期可以以多种格式去打印，也可以使用命令设置固定的格式。在类UNIX系统中，日期被存储为一个整数，其大小为自世界标准时间（UTC）1970年1月1日0时0分0秒起流逝的秒数。<a id="more"></a></p>
+<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><blockquote>
+<p>-d&lt;字符串&gt;：显示字符串所指的日期与时间。字符串前后必须加上双引号；<br>-s&lt;字符串&gt;：根据字符串来设置日期与时间。字符串前后必须加上双引号；<br>-u：显示GMT；</p>
+</blockquote>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><blockquote>
+<p>&lt;+时间日期格式&gt;：指定显示时使用的日期时间格式。</p>
+</blockquote>
+<h2 id="日期格式字符串列表"><a href="#日期格式字符串列表" class="headerlink" title="日期格式字符串列表"></a>日期格式字符串列表</h2><blockquote>
+<p>%H 小时，24小时制（00~23）<br>%I 小时，12小时制（01~12）<br>%k 小时，24小时制（0~23）<br>%l 小时，12小时制（1~12）<br>%M 分钟（00~59）<br>%p 显示出AM或PM<br>%r 显示时间，12小时制（hh:mm:ss %p）<br>%s 从1970年1月1日00:00:00到目前经历的秒数<br>%S 显示秒（00~59）<br>%T 显示时间，24小时制（hh:mm:ss）<br>%X 显示时间的格式（%H:%M:%S）<br>%Z 显示时区，日期域（CST）<br>%a 星期的简称（Sun~Sat）<br>%A 星期的全称（Sunday~Saturday）<br>%h,%b 月的简称（Jan~Dec）<br>%B 月的全称（January~December）<br>%c 日期和时间（Tue Nov 20 14:12:58 2012）<br>%d 一个月的第几天（01~31）<br>%x,%D 日期（mm/dd/yy）<br>%j 一年的第几天（001~366）<br>%m 月份（01~12）<br>%w 一个星期的第几天（0代表星期天）<br>%W 一年的第几个星期（00~53，星期一为第一天）<br>%y 年的最后两个数字（1999则是99）</p>
+</blockquote>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>格式化输出</p>
+<blockquote>
+<p>date +”%Y-%m-%d”<br>2016-12-29</p>
+</blockquote>
+<p>输出昨天日期：</p>
+<blockquote>
+<p>date -d “1 day ago” +”%Y-%m-%d”<br>2016-12-28</p>
+</blockquote>
+<p>2秒后输出：</p>
+<blockquote>
+<p>date -d “2 second” +”%Y-%m-%d %H:%M.%S”<br>2016-12-29 14:37.22</p>
+</blockquote>
+<p>传说中的 1234567890 秒：</p>
+<blockquote>
+<p>date -d “1970-01-01 1482990408 seconds” +”%Y-%m-%d %H:%m:%S”<br>2016-12-29 05:12:48</p>
+</blockquote>
+<p>普通转格式： </p>
+<blockquote>
+<p>date -d “2016-12-29” +”%Y/%m/%d %H:%M.%S”<br>2016/12/29 00:00.00</p>
+</blockquote>
+<p>apache格式转换：</p>
+<blockquote>
+<p>date -d “Dec 29, 2016 12:00:37 AM” +”%Y-%m-%d %H:%M.%S”<br>2016-12-29 00:00.37</p>
+</blockquote>
+<p>格式转换后时间游走：</p>
+<blockquote>
+<p>date -d “Dec 29, 2016 12:00:37 AM 2 year ago” +”%Y-%m-%d %H:%M.%S”<br>2014-12-29 00:00.37</p>
+</blockquote>
+<p>加减操作：</p>
+<blockquote>
+<p>date -s //设置当前时间，只有root权限才能设置，其他只能查看<br>date -s 20161229 //设置成20120523，这样会把具体时间设置成空00:00:00<br>date -s 01:01:01 //设置具体时间，不会对日期做更改<br>date -s “01:01:01 2016-12-29” //这样可以设置全部时间<br>date -s “01:01:01 20161229” //这样可以设置全部时间<br>date -s “2016-12-29 01:01:01” //这样可以设置全部时间<br>date -s “20161229 01:01:01” //这样可以设置全部时间</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+            <a href="/tags/date/" rel="tag">#date</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/01/svn-backup/" rel="next" title="SVN备份方案">
+                <i class="fa fa-chevron-left"></i> SVN备份方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -379,6 +477,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/29/linux-date-command/"
+           data-title="linux date命令" data-url="http://blog.imarkofu.com/2016/12/29/linux-date-command/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -398,8 +504,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -449,6 +564,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#选项"><span class="nav-number">1.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数"><span class="nav-number">2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期格式字符串列表"><span class="nav-number">3.</span> <span class="nav-text">日期格式字符串列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">4.</span> <span class="nav-text">实例</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -552,6 +678,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

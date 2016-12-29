@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.imarkofu.com/2016/12/29/linux-date-command/</loc>
+    
+    <lastmod>2016-12-29T06:47:31.430Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.imarkofu.com/2016/11/30/centos-safety-reinforcement-and-performance-optimization/</loc>
     
     <lastmod>2016-12-01T10:29:50.691Z</lastmod>
@@ -96,6 +103,13 @@
     <loc>http://blog.imarkofu.com/categories/index.html</loc>
     
     <lastmod>2016-11-29T09:26:11.708Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.imarkofu.com/vendors/mediaelement-and-player.min.js</loc>
+    
+    <lastmod>2016-10-21T05:50:42.000Z</lastmod>
     
   </url>
   
