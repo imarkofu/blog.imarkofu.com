@@ -4,6 +4,210 @@
 
     
   <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-enctyption-function/</loc>
+    <lastmod>2017-01-17T14:20:36.597Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 加密函数</title>
+        <pubTime>2017-01-17T10:07:23.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>加密函数</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-aggregate-function/</loc>
+    <lastmod>2017-01-17T14:20:27.812Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 聚合函数</title>
+        <pubTime>2017-01-17T14:08:17.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>聚合函数</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-other-function/</loc>
+    <lastmod>2017-01-17T14:20:19.837Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 其他函数</title>
+        <pubTime>2017-01-17T14:15:00.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>函数</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-information-function/</loc>
+    <lastmod>2017-01-17T10:25:09.209Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 信息函数</title>
+        <pubTime>2017-01-17T10:16:14.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>信息函数</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-full-text-search-function/</loc>
+    <lastmod>2017-01-17T10:06:25.326Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 全文检索函数</title>
+        <pubTime>2017-01-17T09:59:44.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>检索函数</tag>
+         
+        <tag>全文检索</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-date-function/</loc>
+    <lastmod>2017-01-17T09:57:37.864Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 日期function</title>
+        <pubTime>2017-01-17T08:40:16.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>日期函数</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-mathematical-function/</loc>
+    <lastmod>2017-01-17T08:39:32.244Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 数学函数</title>
+        <pubTime>2017-01-17T08:08:16.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>数学函数</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-string-comparison-function/</loc>
+    <lastmod>2017-01-17T08:09:42.962Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 字符串比较函数</title>
+        <pubTime>2017-01-17T06:15:23.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>字符串函数</tag>
+         
+        <tag>字符串比较</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/01/17/mysql-control-flow-function/</loc>
+    <lastmod>2017-01-17T06:16:47.869Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 控制流程函数</title>
+        <pubTime>2017-01-17T06:08:19.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>流程函数</tag>
+         
+        <tag>控制流程</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.imarkofu.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.imarkofu.com/2017/01/06/mysql-time-function/</loc>
     <lastmod>2017-01-06T06:27:30.137Z</lastmod>
     <data>
@@ -125,9 +329,9 @@
         <title>centos 6.5 编译安装 mysql 5.5.40</title>
         <pubTime>2016-11-30T13:14:20.000Z</pubTime>
         
-        <tag>数据库</tag>
-         
         <tag>MySQL</tag>
+         
+        <tag>数据库</tag>
          
         <tag>编译安装</tag>
          
@@ -215,9 +419,9 @@
         <title>mysql in 子查询 效率慢 优化</title>
         <pubTime>2016-11-30T12:48:02.000Z</pubTime>
         
-        <tag>数据库</tag>
-         
         <tag>MySQL</tag>
+         
+        <tag>数据库</tag>
          
         <tag>in</tag>
          
