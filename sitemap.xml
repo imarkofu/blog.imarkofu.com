@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.imarkofu.com/2017/03/19/java-singleton/</loc>
+    
+    <lastmod>2017-03-19T15:18:35.885Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.imarkofu.com/2017/03/19/java-volatile/</loc>
+    
+    <lastmod>2017-03-19T14:03:50.998Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.imarkofu.com/2017/02/23/delete-maven-failure-jar/</loc>
+    
+    <lastmod>2017-02-24T02:03:34.454Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.imarkofu.com/2017/01/24/zookeeper-install/</loc>
     
     <lastmod>2017-01-24T07:45:00.053Z</lastmod>

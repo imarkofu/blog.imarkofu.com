@@ -4,6 +4,76 @@
 
     
   <url>
+    <loc>http://blog.imarkofu.com/2017/03/19/java-singleton/</loc>
+    <lastmod>2017-03-19T15:18:35.885Z</lastmod>
+    <data>
+        <display>
+        <title>java 单例模式</title>
+        <pubTime>2017-03-19T14:08:51.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>单例模式</tag>
+         
+        <tag>Java单例模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java编程" url="http://blog.imarkofu.com/categories/Java%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/03/19/java-volatile/</loc>
+    <lastmod>2017-03-19T14:03:50.998Z</lastmod>
+    <data>
+        <display>
+        <title>java volatile 关键字理解</title>
+        <pubTime>2017-03-19T07:38:35.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>同步机制</tag>
+         
+        <tag>volatile关键字</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java编程" url="http://blog.imarkofu.com/categories/Java%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.imarkofu.com/2017/02/23/delete-maven-failure-jar/</loc>
+    <lastmod>2017-02-24T02:03:34.454Z</lastmod>
+    <data>
+        <display>
+        <title>批量删除Maven下载失败的文件夹</title>
+        <pubTime>2017-02-23T06:57:31.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>maven</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java编程" url="http://blog.imarkofu.com/categories/Java%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.imarkofu.com/2017/01/24/zookeeper-install/</loc>
     <lastmod>2017-01-24T07:45:00.053Z</lastmod>
     <data>
