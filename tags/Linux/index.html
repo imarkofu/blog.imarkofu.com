@@ -87,7 +87,7 @@
 <meta name="description" content="一切都是最好的安排！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="imarkofu's blog">
-<meta property="og:url" content="http://blog.imarkofu.com/tags/Linux/index.html">
+<meta property="og:url" content="http://blog.imarkofu.com/tags/linux/index.html">
 <meta property="og:site_name" content="imarkofu's blog">
 <meta property="og:description" content="一切都是最好的安排！">
 <meta name="twitter:card" content="summary">
@@ -110,7 +110,7 @@
   };
 </script>
 
-  <title> 标签: Linux | imarkofu's blog </title>
+  <title> 标签: linux | imarkofu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +279,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        Linux
+        linux
         <small>标签</small>
       </h2>
     </div>
@@ -292,9 +292,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/11/30/centos-safety-reinforcement-and-performance-optimization/" itemprop="url">
+            <a class="post-title-link" href="/2016/12/29/linux-date-command/" itemprop="url">
               
-                <span itemprop="name">CentOS 6.5安全加固及性能优化</span>
+                <span itemprop="name">linux date命令</span>
               
             </a>
         
@@ -302,9 +302,65 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-30T21:36:22+08:00"
-              content="2016-11-30" >
-          11-30
+              datetime="2016-12-29T14:19:07+08:00"
+              content="2016-12-29" >
+          12-29
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/12/01/svn-backup/" itemprop="url">
+              
+                <span itemprop="name">SVN备份方案</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-12-01T15:07:43+08:00"
+              content="2016-12-01" >
+          12-01
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/11/29/curl-command-usage-guide/" itemprop="url">
+              
+                <span itemprop="name">curl命令使用指南</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-11-29T17:07:52+08:00"
+              content="2016-11-29" >
+          11-29
         </time>
       </div>
 
@@ -407,7 +463,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2016 - 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -728,52 +784,6 @@
               error: function(counter, error) {
                 console.log('Failed to save Visitor num, with error message: ' + error.message);
               }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-</body>
-</html>
-          }
             });
           } else {
             var newcounter = new Counter();
