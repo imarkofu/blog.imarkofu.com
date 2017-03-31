@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://blog.imarkofu.com/2017/03/31/use-solr-to-achieve-MySQL-based-query/</loc>
+    <lastmod>2017-03-31T07:23:35.181Z</lastmod>
+    <data>
+        <display>
+        <title>使用Solr实现MySQL基础查询</title>
+        <pubTime>2017-03-31T05:19:39.000Z</pubTime>
+        
+        <tag>Solr查询</tag>
+         
+        <tag>MySQL查询</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库" url="http://blog.imarkofu.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.imarkofu.com/2017/03/19/java-singleton/</loc>
     <lastmod>2017-03-19T15:18:35.885Z</lastmod>
     <data>

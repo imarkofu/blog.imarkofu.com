@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.imarkofu.com/2017/03/31/use-solr-to-achieve-MySQL-based-query/</loc>
+    
+    <lastmod>2017-03-31T07:23:35.181Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.imarkofu.com/2017/03/19/java-singleton/</loc>
     
     <lastmod>2017-03-19T15:18:35.885Z</lastmod>
